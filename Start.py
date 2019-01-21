@@ -4,6 +4,6 @@ from Parametry import Parametry
 
 # ----- Program główny -----
 parametry = Parametry()
-statki = Statki(2)
+statki = Statki(parametry.getTabWielkosc())
 
-print(parametry.getTabWielkosc())
+statki.ustawTab()

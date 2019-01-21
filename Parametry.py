@@ -19,5 +19,5 @@ class Parametry:
         return self.__ileJedno
 
     def getTabWielkosc(self):
-        return self.__tabWielkosc
+        return self.__tabWielkosc + 2
 # endClass
