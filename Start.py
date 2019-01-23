@@ -3,7 +3,9 @@ from Parameters import Parameters
 
 
 # ----- Program główny -----
-parameters = Parameters()
-table = Table(parameters.getTabSize())
+if __name__ == "__main__":
+    parameters = Parameters()
+    table = Table(parameters.getTabSize())
 
-table.doStuff()
+    table.doStuff()
+# endIf

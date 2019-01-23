@@ -21,3 +21,7 @@ class Parameters:
     def getTabSize(self):
         return self.__tabSize + 2
 # endClass
+
+
+if __name__ == "__main__":
+    main()
