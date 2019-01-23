@@ -6,4 +6,4 @@ from Parameters import Parameters
 parameters = Parameters()
 table = Table(parameters.getTabSize())
 
-Table.doStuff()
+table.doStuff()

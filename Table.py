@@ -1,7 +1,8 @@
 import random
 
+
 class Table:
-     def __init__(self, size):
+    def __init__(self, size):
         self._size = size
         self._create_empty()
 
@@ -13,7 +14,6 @@ class Table:
             for j in range (self._size):
                 self._tab[i][j] = random.randint(0, 90) + 10
                 print(self._tab[i][j])
-
 # endClass
 
 
