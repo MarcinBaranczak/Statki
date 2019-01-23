@@ -1,9 +1,9 @@
-from Statki import Statki
-from Parametry import Parametry
+from Table import Table
+from Parameters import Parameters
 
 
 # ----- Program główny -----
-parametry = Parametry()
-statki = Statki(parametry.getTabWielkosc())
+parameters = Parameters()
+table = Table(parameters.getTabSize())
 
-statki.ustawTab()
+Table.doStuff()
