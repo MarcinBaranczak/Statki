@@ -33,6 +33,12 @@ class Table:
         return False
 
     def _placeShip(self, val):                          #buduje statek, ustawia odpowiednie wartości w pola
+        shipSize = val // 10
+        shipOk = [[0 for row in range(shipSize)] for col in range(2)]
+        shipTest = [[0 for row in range(0)] for col in range(0)]
+        shipTest.append([10,3])
+
+        print(shipTest)
         for i in range (5):
             col = random.randint(1, 10)
             row = random.randint(1, 10)
@@ -41,7 +47,7 @@ class Table:
 
     def doStuff(self):                                  # funkcja testowa
         self._borderFill()
-        self._placeShip(10)
+        self._placeShip(42)
         for i in range(len(self._tabA)):                # kolumny
             for j in range(len(self._tabA)):            # wiersze
                 if self._tabA[i][j] < 0:
