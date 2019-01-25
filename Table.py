@@ -20,36 +20,33 @@ class Table:
 
         for i in range(3):                              # czy przyległe pola są puste, lub mają zadaną wartość. Jeżeli nie - wychodzi
             for j in range(3):
-                if self._getFieldValue(col-1+i, row-1+i) != 0  and  self._getFieldValue(col-1+i, row-1+i) != val:
+                if self._getFieldValue(col-1+i, row-1+i) > 0 and self._getFieldValue(col-1+i, row-1+i) != val and self._getFieldValue(col-1+i, row-1+i) != 100:
                     return False
 
         return True
 
-    def _setField(self, col, row, val):                 # ustawia daną wartość w danym polu, zwraca true, jeżeli się uda
-        if self._checkField(col, row, val) == True:
-            self._tabA[col][row] = val
-            return True
-
-        return False
+    def _setField(self, col, row, val):                 # ustawia daną wartość w danym polu
+        self._tabA[col][row] = val
 
     def _placeShip(self, val):                          #buduje statek, ustawia odpowiednie wartości w pola
         shipSize = val // 10
         shipOk = [[0 for row in range(shipSize)] for col in range(2)]
-        shipTest = [[0 for row in range(0)] for col in range(0)]
-        shipTest.append([10,3])
+        #shipTest = [[0 for row in range(0)] for col in range(0)]
 
-        print(shipTest)
-        for i in range (5):
+        for i in range (shipSize):
             col = random.randint(1, 10)
             row = random.randint(1, 10)
-            self._tabA[col][row] = random.randint(10, 90)
-
+            if self._checkField(row, col, val) == True:
+                self._setField(row, col, val)
+                shipOk[0][i] = val
+                shipOk[1][i] = val
+        print(shipOk)
 
     def doStuff(self):                                  # funkcja testowa
         self._borderFill()
         self._placeShip(42)
-        for i in range(len(self._tabA)):                # kolumny
-            for j in range(len(self._tabA)):            # wiersze
+        for i in range(len(self._tabA)):                # wiersze
+            for j in range(len(self._tabA)):            # kolumny
                 if self._tabA[i][j] < 0:
                     fill = " "
                 else:
