@@ -20,7 +20,7 @@ class Table:
 
         for i in range(3):                              # czy przyległe pola są puste, lub mają zadaną wartość. Jeżeli nie - wychodzi
             for j in range(3):
-                if self._getFieldValue(col-1+i, row-1+i) > 0 and self._getFieldValue(col-1+i, row-1+i) != val and self._getFieldValue(col-1+i, row-1+i) != 100:
+                if self._getFieldValue(col-1+i, row-1+i) > 0 and self._getFieldValue(col-1+i, row-1+i) != val and self._getFieldValue(col-1+i, row-1+i) != -100:
                     return False
 
         return True
@@ -33,14 +33,19 @@ class Table:
         shipOk = [[0 for row in range(shipSize)] for col in range(2)]
         #shipTest = [[0 for row in range(0)] for col in range(0)]
 
-        for i in range (shipSize):
+        shipSize -= 1
+
+        while shipSize >= 0:
             col = random.randint(1, 10)
             row = random.randint(1, 10)
             if self._checkField(row, col, val) == True:
                 self._setField(row, col, val)
-                shipOk[0][i] = val
-                shipOk[1][i] = val
+                shipOk[0][shipSize] = row
+                shipOk[1][shipSize] = col
+                shipSize -=1
         print(shipOk)
+
+        # TODO - ship test (czyli tablica do losowania kolejnych strzałów)
 
     def doStuff(self):                                  # funkcja testowa
         self._borderFill()
