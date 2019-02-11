@@ -24,3 +24,6 @@ Funkcje:
         
 *def _setField(self, col, row, val):
     ustawia wartość pola tablicy _tabA[col][row]
+    
+*def _shipTestSet(self, col, row, val):
+    Tworzy tablicę pól które będą mogły być wykorzystane do dołożenia kolejnego "masztu" do statku

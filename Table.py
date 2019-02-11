@@ -2,7 +2,8 @@ import random
 
 class Table:
     def __init__(self, maxTabSize):
-        self._tabA = [[0 for row in range(maxTabSize)] for col in range(maxTabSize)]
+        self._tabA = [[0 for col in range(maxTabSize)] for row in range(maxTabSize)]
+        self._shipTest = []
 
     def _borderFill(self):                              # wypełnia ramkę tablicy wartością -100
         for i in range(len(self._tabA)):
@@ -28,28 +29,42 @@ class Table:
     def _setField(self, col, row, val):                 # ustawia daną wartość w danym polu
         self._tabA[col][row] = val
 
+    def _shipTestSet(self, col, row, val):              # możliwe pola do budowy statku
+        if self._checkField(3 , 3, 12):
+            self._shipTest.append("t1")
+            print(self._shipTest)
+            print("ok")
+    #TODO dokończyć, zamienić "t1" na tablice 2 elementową
+
+
     def _placeShip(self, val):                          #buduje statek, ustawia odpowiednie wartości w pola
         shipSize = val // 10
-        shipOk = [[0 for row in range(shipSize)] for col in range(2)]
-        #shipTest = [[0 for row in range(0)] for col in range(0)]
+        shipOk = [[0 for row in range(shipSize)] for col in range(2)] #tablica x,y obecnego statku
+        self._shipTest.clear()
 
         shipSize -= 1
 
         while shipSize >= 0:
             col = random.randint(1, 10)
             row = random.randint(1, 10)
-            if self._checkField(row, col, val) == True:
+
+            if self._checkField(row, col, val):
                 self._setField(row, col, val)
                 shipOk[0][shipSize] = row
                 shipOk[1][shipSize] = col
-                shipSize -=1
-        print(shipOk)
+
+                self._shipTestSet(self, row, col)
+
+                shipSize -= 1
+
+        # print(shipOk)
+        print(self._shipTest)
 
         # TODO - ship test (czyli tablica do losowania kolejnych strzałów)
 
     def doStuff(self):                                  # funkcja testowa
         self._borderFill()
-        self._placeShip(42)
+        self._placeShip(12)
         for i in range(len(self._tabA)):                # wiersze
             for j in range(len(self._tabA)):            # kolumny
                 if self._tabA[i][j] < 0:
